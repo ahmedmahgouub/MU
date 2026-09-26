@@ -40,9 +40,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/app_name"
             android:textColor="@color/text_primary"
-            android:textSize="11sp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <View
@@ -62,39 +63,27 @@
 
     </LinearLayout>
 
-    <!-- شبكة أزرار الأدوات الـ 12 بترتيب عمودين (مطابق للصورة بالمللي: عمود فردي وعمود زوجي) -->
+    <!-- شبكة أزرار الأدوات الـ 12: عمود واحد بس (تحت بعض) عشان العرض ضيق (3.5 سم)
+         ويبقى كل النص باين واضح من غير ما ينضغط -->
     <GridLayout
         android:id="@+id/gridTools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="2"
-        android:rowCount="6"
-        android:alignmentMode="alignMargins"
-        android:columnOrderPreserved="true">
+        android:columnCount="1"
+        android:rowCount="12">
 
-        <!-- الصف الأول -->
-        <Button android:id="@+id/btnTool0" style="@style/HudToggleButton" android:layout_width="0dp" android:layout_columnWeight="1" android:layout_marginEnd="6dp" android:text="رقم 1" />
-        <Button android:id="@+id/btnTool1" style="@style/HudToggleButton" android:layout_width="0dp" android:layout_columnWeight="1" android:layout_marginStart="6dp" android:text="رقم 2" />
-
-        <!-- الصف الثاني -->
-        <Button android:id="@+id/btnTool2" style="@style/HudToggleButton" android:layout_width="0dp" android:layout_columnWeight="1" android:layout_marginEnd="6dp" android:text="رقم 3" />
-        <Button android:id="@+id/btnTool3" style="@style/HudToggleButton" android:layout_width="0dp" android:layout_columnWeight="1" android:layout_marginStart="6dp" android:text="رقم 4" />
-
-        <!-- الصف الثالث -->
-        <Button android:id="@+id/btnTool4" style="@style/HudToggleButton" android:layout_width="0dp" android:layout_columnWeight="1" android:layout_marginEnd="6dp" android:text="رقم 5" />
-        <Button android:id="@+id/btnTool5" style="@style/HudToggleButton" android:layout_width="0dp" android:layout_columnWeight="1" android:layout_marginStart="6dp" android:text="رقم 6" />
-
-        <!-- الصف الرابع -->
-        <Button android:id="@+id/btnTool6" style="@style/HudToggleButton" android:layout_width="0dp" android:layout_columnWeight="1" android:layout_marginEnd="6dp" android:text="رقم 7" />
-        <Button android:id="@+id/btnTool7" style="@style/HudToggleButton" android:layout_width="0dp" android:layout_columnWeight="1" android:layout_marginStart="6dp" android:text="رقم 8" />
-
-        <!-- الصف الخامس -->
-        <Button android:id="@+id/btnTool8" style="@style/HudToggleButton" android:layout_width="0dp" android:layout_columnWeight="1" android:layout_marginEnd="6dp" android:text="رقم 9" />
-        <Button android:id="@+id/btnTool9" style="@style/HudToggleButton" android:layout_width="0dp" android:layout_columnWeight="1" android:layout_marginStart="6dp" android:text="رقم 10" />
-
-        <!-- الصف السادس والأخير (الخيارات الإضافية مثل الصورة: تم، خط، الحبل) -->
-        <Button android:id="@+id/btnTool10" style="@style/HudToggleButton" android:layout_width="0dp" android:layout_columnWeight="1" android:layout_marginEnd="6dp" android:text="الحبل" />
-        <Button android:id="@+id/btnTool11" style="@style/HudToggleButton" android:layout_width="0dp" android:layout_columnWeight="1" android:layout_marginStart="6dp" android:text="تم" />
+        <Button android:id="@+id/btnTool0" style="@style/HudToggleButton" android:layout_width="match_parent" android:text="رقم 1" />
+        <Button android:id="@+id/btnTool1" style="@style/HudToggleButton" android:layout_width="match_parent" android:text="رقم 2" />
+        <Button android:id="@+id/btnTool2" style="@style/HudToggleButton" android:layout_width="match_parent" android:text="رقم 3" />
+        <Button android:id="@+id/btnTool3" style="@style/HudToggleButton" android:layout_width="match_parent" android:text="رقم 4" />
+        <Button android:id="@+id/btnTool4" style="@style/HudToggleButton" android:layout_width="match_parent" android:text="رقم 5" />
+        <Button android:id="@+id/btnTool5" style="@style/HudToggleButton" android:layout_width="match_parent" android:text="رقم 6" />
+        <Button android:id="@+id/btnTool6" style="@style/HudToggleButton" android:layout_width="match_parent" android:text="رقم 7" />
+        <Button android:id="@+id/btnTool7" style="@style/HudToggleButton" android:layout_width="match_parent" android:text="رقم 8" />
+        <Button android:id="@+id/btnTool8" style="@style/HudToggleButton" android:layout_width="match_parent" android:text="رقم 9" />
+        <Button android:id="@+id/btnTool9" style="@style/HudToggleButton" android:layout_width="match_parent" android:text="رقم 10" />
+        <Button android:id="@+id/btnTool10" style="@style/HudToggleButton" android:layout_width="match_parent" android:text="الحبل" />
+        <Button android:id="@+id/btnTool11" style="@style/HudToggleButton" android:layout_width="match_parent" android:text="تم" />
 
     </GridLayout>
 
@@ -106,7 +95,9 @@
         android:layout_marginBottom="6dp"
         android:background="#22FFFFFF" />
 
-    <!-- قسم محاذاة الأساسيات (Core Alignment) -->
+    <!-- قسم محاذاة الأساسيات (Core Alignment): صفين X2 بدل صف واحد X4 عشان يتسع في العرض الضيق.
+         مش RadioGroup عادي (عشان أندرويد ميدعمش RadioGroup ملفوف على أكتر من سطر)،
+         التحديد المتبادل بين الأربعة بيتعمل يدوي في OverlayService.kt -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -115,19 +106,34 @@
         android:textSize="10sp"
         android:textStyle="bold" />
 
-    <RadioGroup
-        android:id="@+id/radioCoreAlign"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <RadioButton android:id="@+id/rbAlignBottom" style="@style/HudRadioButton" android:layout_width="0dp" android:layout_weight="1" android:text="@string/align_bottom" />
-        <RadioButton android:id="@+id/rbAlignMid" style="@style/HudRadioButton" android:layout_width="0dp" android:layout_weight="1" android:text="@string/align_mid" />
-        <RadioButton android:id="@+id/rbAlignTop" style="@style/HudRadioButton" android:layout_width="0dp" android:layout_weight="1" android:text="@string/align_top" />
-        <RadioButton android:id="@+id/rbAlignOff" style="@style/HudRadioButton" android:layout_width="0dp" android:layout_weight="1" android:text="@string/align_off" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    </RadioGroup>
+            <RadioButton android:id="@+id/rbAlignBottom" style="@style/HudRadioButton" android:layout_width="0dp" android:layout_weight="1" android:text="@string/align_bottom" />
+            <RadioButton android:id="@+id/rbAlignMid" style="@style/HudRadioButton" android:layout_width="0dp" android:layout_weight="1" android:text="@string/align_mid" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:orientation="horizontal">
+
+            <RadioButton android:id="@+id/rbAlignTop" style="@style/HudRadioButton" android:layout_width="0dp" android:layout_weight="1" android:text="@string/align_top" />
+            <RadioButton android:id="@+id/rbAlignOff" style="@style/HudRadioButton" android:layout_width="0dp" android:layout_weight="1" android:text="@string/align_off" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <!-- قسم الحالة (Status) -->
     <TextView
