@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- الحجم بالـ dp (مش mm) عشان mm بتعتمد على بيانات الشاشة الفيزيائية اللي كتير من الأجهزة
-     بتبلغ عنها غلط، فيبقى الحجم عشوائي. الـ dp أدق وأثبت على كل الأجهزة.
-     441dp × 315dp ≈ 7 سم × 5 سم على معظم الأجهزة (بافتراض كثافة شاشة قياسية).
-     لو المحتوى أطول من الارتفاع ده بيتحرك بالـ ScrollView تلقائي بدل ما يتقص. -->
+<!-- ملحوظة مهمة: الحجم الحقيقي للنافذة العائمة اتحدد في كود OverlayService.kt (بالبكسل)
+     مش هنا، لأن أندرويد بيتجاهل مقاس الـ layout الجذري لما يكون النوافذ مضافة
+     مباشرة عن طريق WindowManager. الـ match_parent هنا معناها "املا حجم النافذة
+     المحدد في الكود" -- مش تحديد حجم فعلي. -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/panelRoot"
-    android:layout_width="441dp"
-    android:layout_height="315dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/bg_panel">
 
     <ScrollView
