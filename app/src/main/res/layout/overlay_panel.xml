@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- الحجم الفعلي للقايمة اتحدد بالمليمتر عشان يطلع نفس المقاس الحقيقي (7 سم عرض × 5 سم ارتفاع)
-     مهما كانت دقة شاشة الجهاز. لو المحتوى أطول من 5 سم بيتحرك بالـ ScrollView تلقائي بدل ما يتقص. -->
+<!-- الحجم بالـ dp (مش mm) عشان mm بتعتمد على بيانات الشاشة الفيزيائية اللي كتير من الأجهزة
+     بتبلغ عنها غلط، فيبقى الحجم عشوائي. الـ dp أدق وأثبت على كل الأجهزة.
+     441dp × 315dp ≈ 7 سم × 5 سم على معظم الأجهزة (بافتراض كثافة شاشة قياسية).
+     لو المحتوى أطول من الارتفاع ده بيتحرك بالـ ScrollView تلقائي بدل ما يتقص. -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/panelRoot"
-    android:layout_width="70mm"
-    android:layout_height="50mm"
+    android:layout_width="441dp"
+    android:layout_height="315dp"
     android:background="@drawable/bg_panel">
 
     <ScrollView
