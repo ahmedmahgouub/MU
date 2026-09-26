@@ -137,9 +137,9 @@ class OverlayService : Service() {
 
         // حجم النافذة الفعلي لازم يتحدد هنا في الكود (مش في XML) لأن أندرويد بيتجاهل
         // مقاس عنصر الـ layout الجذري لما يكون داخل نافذة Overlay مضافة بـ WindowManager.
-        // 441dp × 315dp ≈ 7 سم × 5 سم فعلياً على الشاشة.
-        val panelWidthPx = dpToPx(441)
-        val panelHeightPx = dpToPx(315)
+        // 221dp × 441dp ≈ 3.5 سم × 7 سم فعلياً على الشاشة.
+        val panelWidthPx = dpToPx(221)
+        val panelHeightPx = dpToPx(441)
 
         val params = WindowManager.LayoutParams(
             panelWidthPx,
@@ -198,19 +198,25 @@ class OverlayService : Service() {
     }
 
     private fun bindRadioGroups(root: View) {
-        val alignGroup = root.findViewById<RadioGroup>(R.id.radioCoreAlign)
-        val idToAlign = mapOf(
-            R.id.rbAlignBottom to "bottom",
-            R.id.rbAlignMid to "mid",
-            R.id.rbAlignTop to "top",
-            R.id.rbAlignOff to "off"
+        // الـ 4 أزرار (Bottom/Mid/Top/Off) بقت في صفين منفصلين مش RadioGroup واحد
+        // (عشان اتصفوا صف فوق صف تحت في العرض الضيق)، فالتحديد المتبادل بينهم
+        // بيتعمل يدوي هنا بدل ما نعتمد على سلوك RadioGroup التلقائي.
+        val alignButtons = mapOf(
+            root.findViewById<android.widget.RadioButton>(R.id.rbAlignBottom) to "bottom",
+            root.findViewById<android.widget.RadioButton>(R.id.rbAlignMid) to "mid",
+            root.findViewById<android.widget.RadioButton>(R.id.rbAlignTop) to "top",
+            root.findViewById<android.widget.RadioButton>(R.id.rbAlignOff) to "off"
         )
-        val alignToId = idToAlign.entries.associate { (k, v) -> v to k }
-        alignGroup.check(alignToId[prefs.getCoreAlign()] ?: R.id.rbAlignTop)
-        alignGroup.setOnCheckedChangeListener { _, checkedId ->
-            val value = idToAlign[checkedId] ?: return@setOnCheckedChangeListener
-            prefs.setCoreAlign(value)
-            applyCoreAlign(value)
+        fun refreshAlignChecks(selected: String) {
+            alignButtons.forEach { (btn, value) -> btn.isChecked = (value == selected) }
+        }
+        refreshAlignChecks(prefs.getCoreAlign())
+        alignButtons.forEach { (btn, value) ->
+            btn.setOnClickListener {
+                prefs.setCoreAlign(value)
+                refreshAlignChecks(value)
+                applyCoreAlign(value)
+            }
         }
 
         val statusGroup = root.findViewById<RadioGroup>(R.id.radioStatus)
