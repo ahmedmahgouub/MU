@@ -135,9 +135,15 @@ class OverlayService : Service() {
     private fun addPanelView() {
         val view = View.inflate(this, R.layout.overlay_panel, null)
 
+        // حجم النافذة الفعلي لازم يتحدد هنا في الكود (مش في XML) لأن أندرويد بيتجاهل
+        // مقاس عنصر الـ layout الجذري لما يكون داخل نافذة Overlay مضافة بـ WindowManager.
+        // 441dp × 315dp ≈ 7 سم × 5 سم فعلياً على الشاشة.
+        val panelWidthPx = dpToPx(441)
+        val panelHeightPx = dpToPx(315)
+
         val params = WindowManager.LayoutParams(
-            WindowManager.LayoutParams.WRAP_CONTENT,
-            WindowManager.LayoutParams.WRAP_CONTENT,
+            panelWidthPx,
+            panelHeightPx,
             overlayWindowType(),
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
             PixelFormat.TRANSLUCENT
@@ -264,6 +270,8 @@ class OverlayService : Service() {
             WindowManager.LayoutParams.TYPE_PHONE
         }
     }
+
+    private fun dpToPx(dp: Int): Int = (dp * resources.displayMetrics.density).toInt()
 
     private fun performToolAction(index: Int, on: Boolean) {
         try {
